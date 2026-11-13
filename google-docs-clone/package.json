@@ -1,0 +1,11 @@
+{
+  "name": "google-docs-clone",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npm start --prefix server",
+    "dev": "npm run dev --prefix server",
+    "server": "npm start --prefix server",
+    "client": "npm start --prefix client"
+  }
+}

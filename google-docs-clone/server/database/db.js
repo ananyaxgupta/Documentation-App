@@ -1,12 +1,13 @@
-import mongoose  from 'mongoose';
+import mongoose from 'mongoose';
 
-const Connection = async (username = 'usercode', password = 'codeforinterview') => {
-    const URL = `mongodb://${username}:${password}@google-docs-clone-shard-00-00.u7w63.mongodb.net:27017,google-docs-clone-shard-00-01.u7w63.mongodb.net:27017,google-docs-clone-shard-00-02.u7w63.mongodb.net:27017/GOOGLE-DOCS?ssl=true&replicaSet=atlas-zfichu-shard-0&authSource=admin&retryWrites=true&w=majority`;
+const Connection = async () => {
+    const URL = process.env.MONGO_URI || `mongodb://127.0.0.1:27017/google-docs-clone`;
 
     try {
-        await mongoose.connect(URL, { useUnifiedTopology: true, useNewUrlParser: true });
+        mongoose.set('strictQuery', false);
+        await mongoose.connect(URL);
         console.log('Database connected successfully');
-    } catch (error) {   
+    } catch (error) {
         console.log('Error while connecting with the database ', error);
     }
 }
